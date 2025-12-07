@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from inicio_sesion import login
 from productos import llamar_productos
+from ordenes import crear_orden
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -18,6 +19,10 @@ def iniciar_sesion():
 @app.route("/api/productos", methods=["GET"])
 def traer_productos():
     return llamar_productos()
+
+@app.route('/api/orden', methods=['POST'])
+def orden():
+    return crear_orden()
 
 if __name__ == "__main__":
     app.run(debug=True)
