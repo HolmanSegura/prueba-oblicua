@@ -1,0 +1,11 @@
+nombre,precio,cantidad_disponible,estado
+"Laptop HP 15"",850.00,10,activado"
+Mouse Logitech,25.50,50,activado
+Teclado Mecánico,120.00,30,activado
+"Monitor LG 24"",250.00,15,activa"
+Webcam HD 1080p,60.00,40,activado
+Auriculares Sony,180.00,25,activado
+Cable USB-C,15.00,100,activado
+SSD 500GB,70.00,0,desactivado
+RAM DDR4 16GB,95.00,35,activado
+Adaptador HDMI,12.50,60,activado
