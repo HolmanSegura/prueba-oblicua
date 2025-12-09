@@ -178,10 +178,4 @@ Deberás ver `Running on http://127.0.0.1:5000`
 }
 ```
 
-**Respuesta de error (400 - Stock insuficiente):**
-```json
-{
-  "error": "Sin stock suficiente para producto 1"
-}
-```
 
