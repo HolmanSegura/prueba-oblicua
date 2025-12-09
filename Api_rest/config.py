@@ -11,6 +11,5 @@ DB_USER = os.getenv("DB_USER", "root")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 DB_NAME = os.getenv("DB_NAME", "tienda_prueba")
 
-# Configuración de JWT
 JWT_SECRET = os.getenv("JWT_SECRET", "secret")
 JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
