@@ -2,14 +2,26 @@ import csv
 import io
 
 from flask import request, jsonify
+from db.base_datos import conexion_bd
 
-from base_datos import conexion_bd
+
+def _respuesta_csv(success, insertados, fallidos, errores, status):
+    """
+    Construye la respuesta estándar del microservicio CSV.
+    """
+    cuerpo = {
+        "success": success,
+        "insertados": insertados,
+        "fallidos": fallidos,
+        "errores": errores,
+    }
+    return jsonify(cuerpo), status
 
 
 def procesar_productos_csv():
     """
     Procesa un archivo CSV con productos y los inserta en la base de datos.
-    Valida cabeceras, tipos y reglas de negocio básicas.
+    Valida cabeceras, tipos de datos y reglas de negocio.
     """
     # 1. Validar que venga el archivo
     if "file" not in request.files:
@@ -100,9 +112,9 @@ def procesar_productos_csv():
                 fallidos += 1
                 errores.append(
                     (
-                        "Fila {fila}: cantidad_disponible inválida "
+                        f"Fila {fila_num}: cantidad_disponible inválida "
                         f"('{cantidad_str}')"
-                    ).format(fila=fila_num)
+                    )
                 )
                 continue
 
@@ -110,9 +122,9 @@ def procesar_productos_csv():
                 fallidos += 1
                 errores.append(
                     (
-                        "Fila {fila}: estado inválido ('{estado}'), "
+                        f"Fila {fila_num}: estado inválido ('{estado}'), "
                         "debe ser 'activado' o 'desactivado'"
-                    ).format(fila=fila_num, estado=estado)
+                    )
                 )
                 continue
 
@@ -146,16 +158,3 @@ def procesar_productos_csv():
             errores=[f"Error general procesando el archivo: {str(e)}"],
             status=500,
         )
-
-
-def _respuesta_csv(success, insertados, fallidos, errores, status):
-    """
-    Construye la respuesta estándar del microservicio CSV.
-    """
-    cuerpo = {
-        "success": success,
-        "insertados": insertados,
-        "fallidos": fallidos,
-        "errores": errores,
-    }
-    return jsonify(cuerpo), status

@@ -1,11 +1,9 @@
 from flask import jsonify
-
-from base_datos import conexion_bd
-
+from db.base_datos import conexion_bd
 
 def llamar_productos():
     """
-    Obtiene la lista de productos ordenados por ID.
+    Obtiene la lista de productos ordenados por id.
     """
     conn = None
     cursor = None
@@ -13,14 +11,13 @@ def llamar_productos():
     try:
         conn = conexion_bd()
         cursor = conn.cursor(dictionary=True)
-
-        query = "SELECT * FROM producto ORDER BY producto_id DESC"
+        query = "SELECT * FROM producto ORDER BY producto.id DESC"
         cursor.execute(query)
         productos = cursor.fetchall()
 
         return jsonify(productos), 200
 
-    except Exception:
+    except Exception as e:
         return jsonify({"error": "Error al obtener productos"}), 500
 
     finally:
