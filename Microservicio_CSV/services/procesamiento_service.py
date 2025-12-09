@@ -18,10 +18,31 @@ def _respuesta_csv(exitoso, insertados, fallidos, errores, status):
     return jsonify(cuerpo), status
 
 
+def _insertar_lote_productos(cursor, insert_sql, lote_valido):
+    """
+    Inserta un lote de productos usando executemany.
+    Devuelve la cantidad insertada y un posible mensaje de error (o None).
+    """
+    if not lote_valido:
+        return 0, None
+
+    try:
+        cursor.executemany(insert_sql, lote_valido)
+        cantidad = len(lote_valido)
+        lote_valido.clear()
+        return cantidad, None
+    except Exception as e:
+        # Si falla el lote, lo limpiamos y reportamos el error
+        cantidad = len(lote_valido)
+        lote_valido.clear()
+        return 0, f"Error al insertar lote en BD: {str(e)}"
+
+
 def procesar_productos_csv():
     """
     Procesa un archivo CSV con productos y los inserta en la base de datos.
     Valida cabeceras, tipos de datos y reglas de negocio.
+    Usa inserciones por lote (batch) para mejorar rendimiento.
     """
     # Valida que venga el archivo
     if "file" not in request.files:
@@ -44,12 +65,13 @@ def procesar_productos_csv():
             status=400,
         )
 
+    conn = None
+    cursor = None
+
     try:
-        # Leer CSV en memoria (UTF-8)
         text_wrapper = io.TextIOWrapper(file.stream, encoding="utf-8")
         reader = csv.DictReader(text_wrapper)
 
-        # Validar cabeceras esperadas
         columnas_esperadas = {"nombre", "precio", "cantidad_disponible", "estado"}
         if set(reader.fieldnames or []) != columnas_esperadas:
             return _respuesta_csv(
@@ -77,7 +99,9 @@ def procesar_productos_csv():
             VALUES (%s, %s, %s, %s)
         """
 
-        # Recorrer filas del CSV
+        BATCH_SIZE = 5
+        lote_valido: list[tuple] = []
+
         fila_num = 1
         for row in reader:
             fila_num += 1
@@ -128,18 +152,33 @@ def procesar_productos_csv():
                 )
                 continue
 
-            # Insertar en BD
-            try:
-                cursor.execute(insert_sql, (nombre, precio, cantidad, estado))
-                insertados += 1
-            except Exception as e:
-                fallidos += 1
-                errores.append(
-                    f"Fila {fila_num}: error al insertar en BD: {str(e)}"
+            # Acumular en lote
+            lote_valido.append((nombre, precio, cantidad, estado))
+
+            # Si se llena el lote, insertarlo
+            if len(lote_valido) >= BATCH_SIZE:
+                cantidad_insertada, error_lote = _insertar_lote_productos(
+                    cursor, insert_sql, lote_valido
                 )
+                insertados += cantidad_insertada
+                if error_lote:
+                    fallidos += BATCH_SIZE
+                    errores.append(
+                        f"{error_lote} (hasta fila {fila_num})"
+                    )
+
+        # Insertar el lote restante
+        if lote_valido:
+            cantidad_insertada, error_lote = _insertar_lote_productos(
+                cursor, insert_sql, lote_valido
+            )
+            insertados += cantidad_insertada
+            if error_lote:
+                fallidos += len(lote_valido)
+                errores.append(error_lote)
 
         conn.commit()
-        
+
         return _respuesta_csv(
             exitoso=True,
             insertados=insertados,
@@ -149,6 +188,12 @@ def procesar_productos_csv():
         )
 
     except Exception as e:
+        if conn is not None:
+            try:
+                conn.rollback()
+            except Exception:
+                pass
+
         return _respuesta_csv(
             exitoso=False,
             insertados=0,
