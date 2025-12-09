@@ -16,7 +16,7 @@ prueba-oblicua/
 ├── Microservicio_CSV/           # Microservicio para carga de CSV
 ├── Consultas_SQL/               # Consultas SQL
 ├── Modelado_base_de_datos/      # Scripts y diagramas de BD
-├── postman/                     # Collection de Postman
+├── postman/collections/         # Collection de Postman
 └── README.md                    # Este archivo
 ```
 
@@ -106,6 +106,7 @@ prueba-oblicua/
 | **Autenticación** | JWT (PyJWT) |
 | **ORM/Conector** | mysql-connector-python |
 | **Variables de Entorno** | python-dotenv |
+| **Pruebas** | Postman |
 
 ---
 
@@ -145,7 +146,9 @@ prueba-oblicua/
 │   └── justificacion_tecnica_BD.md  # Documentación técnica
 │
 ├── postman/                    
-│   ├── collection.json         # Collection de Postman
+│   ├── collections             # Collection de Postman
+│      ├── Api_rest             # Collection de la API REST
+│      └── Microservicio_CSV    # Collection del microservicio CSV
 │
 ├── .gitignore                  # Archivos ignorados por Git
 └── README.md                   # Este archivo
