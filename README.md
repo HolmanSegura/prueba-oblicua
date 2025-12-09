@@ -1,14 +1,14 @@
-# 🛒 Prueba Técnica Oblicua - Sistema de Tienda
+# Prueba Técnica Oblicua
 
 > Prueba técnica de Oblicua para evaluación de competencias en desarrollo backend, bases de datos y arquitectura de microservicios.
 
 ---
 
-## 📋 Descripción General
+## Descripción General
 
 Este proyecto implemeta un sistema que incluye gestión de usuarios, productos y órdenes de compra. La solución está diseñada con una arquitectura de microservicios, utilizando Flask como framework principal y MySQL como base de datos relacional.
 
-## 🏗️ Arquitectura del Proyecto
+## Arquitectura del Proyecto
 
 ```
 prueba-oblicua/
@@ -22,7 +22,7 @@ prueba-oblicua/
 
 ---
 
-## 🧩 Componentes del Sistema
+## Componentes del Sistema
 
 ### 1️⃣ [API REST](./Api_rest)
 
@@ -34,7 +34,7 @@ prueba-oblicua/
 - `GET /api/productos` - Listar productos disponibles
 - `POST /api/orden` - Crear nueva orden de compra
 
-📖 **[Ver documentación detallada](./Api_rest/INSTRUCCIONES.md)**
+**[Ver documentación detallada](./Api_rest/INSTRUCCIONES.md)**
 
 ---
 
@@ -47,7 +47,7 @@ prueba-oblicua/
 - `POST /procesar-productos-csv` - Cargar productos desde CSV
 - `GET /productos` - Verificar productos cargados
 
-📖 **[Ver documentación detallada](./Microservicio_CSV/INSTRUCCIONES.md)**
+**[Ver documentación detallada](./Microservicio_CSV/INSTRUCCIONES.md)**
 
 ---
 
@@ -56,12 +56,12 @@ prueba-oblicua/
 **Descripción:** Colección de consultas SQL.
 
 **Consultas incluidas:**
-1. 📊 Obtener todas las órdenes con su total calculado
-2. 🏆 Top 5 productos más vendidos
-3. 👥 Usuarios sin órdenes registradas
-4. 🔍 Búsqueda de productos por texto
+1. Obtener todas las órdenes con su total calculado
+2. Top 5 productos más vendidos
+3. Usuarios sin órdenes registradas
+4. Búsqueda de productos por texto
 
-📖 **[Ver explicación de consultas](./Consultas_SQL/Explicacion.md)**
+**[Ver explicación de consultas](./Consultas_SQL/Explicacion.md)**
 
 ---
 
@@ -70,10 +70,10 @@ prueba-oblicua/
 **Descripción:** Diseño completo de la base de datos con scripts de creación y documentación técnica.
 
 **Contenido:**
-- 🗂️ Script SQL de creación de tablas
-- 📐 Diagrama Entidad-Relación (ER)
-- 📝 Justificación técnica del diseño
-- ⚙️ Triggers automáticos para cálculos
+- Script SQL de creación de tablas
+- Diagrama Entidad-Relación (ER)
+- Justificación técnica del diseño
+- Triggers automáticos para cálculos
 
 **Tablas principales:**
 - `usuario` - Información de usuarios registrados
@@ -81,7 +81,7 @@ prueba-oblicua/
 - `orden` - Órdenes de compra
 - `detalle_orden` - Detalles de cada orden
 
-📖 **[Ver justificación técnica](./Modelado_base_de_datos/justificacion_tecnica_BD.md)**
+**[Ver justificación técnica](./Modelado_base_de_datos/justificacion_tecnica_BD.md)**
 
 ---
 
@@ -90,11 +90,11 @@ prueba-oblicua/
 **Descripción:** Collection de Postman con los endpoints principales del API REST y del microservicio CSV.
 
 **Contenido:**
-- 🗂️ Collection de Postman con los endpoints principales del API REST y del microservicio CSV
+- Collection de Postman con los endpoints principales del API REST y del microservicio CSV
 
 ---
 
-## 🛠️ Stack Tecnológico
+## Stack Tecnológico
 
 | Componente | Tecnología |
 |------------|------------|
@@ -107,7 +107,7 @@ prueba-oblicua/
 
 ---
 
-## 🗂️ Estructura de Archivos
+## Estructura de Archivos
 
 ```
 prueba-oblicua/
@@ -151,6 +151,6 @@ prueba-oblicua/
 
 ---
 
-## 📝 Licencia
+## Licencia
 
 Este proyecto fue desarrollado como parte de una prueba técnica para Oblicua.
