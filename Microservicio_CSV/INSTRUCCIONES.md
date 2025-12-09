@@ -97,7 +97,7 @@ Deberás ver `Running on http://127.0.0.1:5100`
 
 **Name:** `file`
 **Type:** `File`
-**File** `selecciona el archivo de ejemplo ejemplo_subida_productos.csv en la carpeta archivo_csv`
+**File:** `selecciona el archivo de ejemplo ejemplo_subida_productos.csv en la carpeta archivo_csv`
 
 **Respuesta esperada (200 - OK):**
 ```json
