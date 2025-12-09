@@ -1,0 +1,170 @@
+{
+  "info": {
+    "_postman_id": "2fef1a62-7884-4b70-8a4d-0ea3b9177052",
+    "name": "API REST",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "prueba de conexion",
+      "id": "f4387413-869d-44c5-a923-1c7f2290ce42",
+      "protocolProfileBehavior": {
+        "followRedirects": true,
+        "disableUrlEncoding": false,
+        "disableCookies": false
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "User-Agent",
+            "value": "insomnia/12.1.0"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:5000/ping",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "ping"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "id": "fa20e4b9-32fe-415a-a89f-0c51750f0385",
+      "protocolProfileBehavior": {
+        "followRedirects": true,
+        "disableUrlEncoding": false,
+        "disableCookies": false
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "User-Agent",
+            "value": "insomnia/12.1.0"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"email\": \"juan@example.com\",\n\t\"password\": \"juan123\"\n}\n\t",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/api/login",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "crear orden",
+      "id": "ab9e68bc-b002-4334-b55b-03bb24feb25e",
+      "protocolProfileBehavior": {
+        "followRedirects": true,
+        "disableUrlEncoding": false,
+        "disableCookies": false
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "User-Agent",
+            "value": "insomnia/12.1.0"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario_id\": 1,\n  \"items\": [\n    {\n      \"producto_id\": 5,\n      \"cantidad\": 2\n    },\n    {\n      \"producto_id\": 3,\n      \"cantidad\": 1\n    }\n  ]\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/api/orden",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "orden"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "llamar productos",
+      "id": "39b10201-54a1-47cb-af3a-98c386193a4c",
+      "protocolProfileBehavior": {
+        "followRedirects": true,
+        "disableUrlEncoding": false,
+        "disableCookies": false
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "User-Agent",
+            "value": "insomnia/12.1.0"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:5000/api/productos",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "productos"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

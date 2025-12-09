@@ -1,4 +1,3 @@
-# backend_prueba/config.py
 import os
 from dotenv import load_dotenv
 

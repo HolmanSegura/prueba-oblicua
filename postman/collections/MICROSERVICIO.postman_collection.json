@@ -1,0 +1,119 @@
+{
+  "info": {
+    "_postman_id": "1d18bfde-4567-494a-afb5-1a1dfce80ff5",
+    "name": "MICROSERVICIO",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "prueba de conexion",
+      "id": "47467141-c66e-41d1-841d-0be3618df5c3",
+      "protocolProfileBehavior": {
+        "followRedirects": true,
+        "disableUrlEncoding": false,
+        "disableCookies": false
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "User-Agent",
+            "value": "insomnia/12.1.0"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:5100/ping",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5100",
+          "path": [
+            "ping"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "procesamiento csv",
+      "id": "dd688b30-91bd-4e09-9812-3536bdea0e85",
+      "protocolProfileBehavior": {
+        "followRedirects": true,
+        "disableUrlEncoding": false,
+        "disableCookies": false
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "multipart/form-data"
+          },
+          {
+            "key": "User-Agent",
+            "value": "insomnia/12.1.0"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "C:\\Users\\Administrator\\OneDrive\\Escritorio\\prueba-oblicua\\Microservicio_CSV\\archivo_csv\\ejemplo_subida_productos.csv"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5100/procesar-productos-csv",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5100",
+          "path": [
+            "procesar-productos-csv"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "llamar productos",
+      "id": "6015251a-76dc-4da1-b00d-6a2789ec0507",
+      "protocolProfileBehavior": {
+        "followRedirects": true,
+        "disableUrlEncoding": false,
+        "disableCookies": false
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "User-Agent",
+            "value": "insomnia/12.1.0"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5100/productos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5100",
+          "path": [
+            "productos"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
