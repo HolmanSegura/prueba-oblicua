@@ -24,7 +24,7 @@ prueba-oblicua/
 
 ## Componentes del Sistema
 
-### 1️⃣ [API REST](./Api_rest)
+### 1️ [API REST](./Api_rest)
 
 **Puerto:** `5000`  
 **Descripción:** API principal que maneja la lógica de negocio del sistema.
@@ -38,7 +38,7 @@ prueba-oblicua/
 
 ---
 
-### 2️⃣ [Microservicio CSV](./Microservicio_CSV)
+### 2️ [Microservicio CSV](./Microservicio_CSV)
 
 **Puerto:** `5100`  
 **Descripción:** Microservicio especializado en la carga masiva de productos desde archivos CSV.
@@ -51,7 +51,7 @@ prueba-oblicua/
 
 ---
 
-### 3️⃣ [Consultas SQL](./Consultas_SQL)
+### 3️ [Consultas SQL](./Consultas_SQL)
 
 **Descripción:** Colección de consultas SQL.
 
@@ -65,7 +65,7 @@ prueba-oblicua/
 
 ---
 
-### 4️⃣ [Modelado de Base de Datos](./Modelado_base_de_datos)
+### 4️ [Modelado de Base de Datos](./Modelado_base_de_datos)
 
 **Descripción:** Diseño completo de la base de datos con scripts de creación y documentación técnica.
 
@@ -85,12 +85,14 @@ prueba-oblicua/
 
 ---
 
-### 5️⃣ [Postman](./postman)
+### 5️ [Postman](./postman)
 
 **Descripción:** Collection de Postman con los endpoints principales del API REST y del microservicio CSV.
 
 **Contenido:**
 - Collection de Postman con los endpoints principales del API REST y del microservicio CSV
+
+**[Ver collection](./postman/collection.json)**
 
 ---
 
