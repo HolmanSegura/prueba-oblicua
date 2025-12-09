@@ -32,7 +32,6 @@ def _insertar_lote_productos(cursor, insert_sql, lote_valido):
         lote_valido.clear()
         return cantidad, None
     except Exception as e:
-        # Si falla el lote, lo limpiamos y reportamos el error
         cantidad = len(lote_valido)
         lote_valido.clear()
         return 0, f"Error al insertar lote en BD: {str(e)}"
