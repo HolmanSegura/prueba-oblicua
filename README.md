@@ -92,7 +92,7 @@ prueba-oblicua/
 **Contenido:**
 - Collection de Postman con los endpoints principales del API REST y del microservicio CSV
 
-**[Ver collection](./postman/collection.json)**
+**[Ver collection](./postman/collections)**
 
 ---
 
