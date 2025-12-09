@@ -11,7 +11,7 @@ def llamar_productos():
     try:
         conn = conexion_bd()
         cursor = conn.cursor(dictionary=True)
-        query = "SELECT * FROM producto ORDER BY producto.id DESC"
+        query = "SELECT * FROM producto ORDER BY producto_id DESC"
         cursor.execute(query)
         productos = cursor.fetchall()
 
