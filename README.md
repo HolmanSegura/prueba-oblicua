@@ -24,48 +24,7 @@ prueba-oblicua/
 
 ## Componentes del Sistema
 
-### 1️ [API REST](./Api_rest)
-
-**Puerto:** `5000`  
-**Descripción:** API principal que maneja la lógica de negocio del sistema.
-
-**Endpoints principales:**
-- `POST /api/login` - Autenticación de usuarios
-- `GET /api/productos` - Listar productos disponibles
-- `POST /api/orden` - Crear nueva orden de compra
-
-**[Ver documentación detallada](./Api_rest/INSTRUCCIONES.md)**
-
----
-
-### 2️ [Microservicio CSV](./Microservicio_CSV)
-
-**Puerto:** `5100`  
-**Descripción:** Microservicio especializado en la carga masiva de productos desde archivos CSV.
-
-**Endpoints principales:**
-- `POST /procesar-productos-csv` - Cargar productos desde CSV
-- `GET /productos` - Verificar productos cargados
-
-**[Ver documentación detallada](./Microservicio_CSV/INSTRUCCIONES.md)**
-
----
-
-### 3️ [Consultas SQL](./Consultas_SQL)
-
-**Descripción:** Colección de consultas SQL.
-
-**Consultas incluidas:**
-1. Obtener todas las órdenes con su total calculado
-2. Top 5 productos más vendidos
-3. Usuarios sin órdenes registradas
-4. Búsqueda de productos por texto
-
-**[Ver explicación de consultas](./Consultas_SQL/Explicacion.md)**
-
----
-
-### 4️ [Modelado de Base de Datos](./Modelado_base_de_datos)
+### 1 [Modelado de Base de Datos](./Modelado_base_de_datos)
 
 **Descripción:** Diseño completo de la base de datos con scripts de creación y documentación técnica.
 
@@ -82,6 +41,47 @@ prueba-oblicua/
 - `detalle_orden` - Detalles de cada orden
 
 **[Ver justificación técnica](./Modelado_base_de_datos/justificacion_tecnica_BD.md)**
+
+---
+
+### 2 [Consultas SQL](./Consultas_SQL)
+
+**Descripción:** Colección de consultas SQL.
+
+**Consultas incluidas:**
+1. Obtener todas las órdenes con su total calculado
+2. Top 5 productos más vendidos
+3. Usuarios sin órdenes registradas
+4. Búsqueda de productos por texto
+
+**[Ver explicación de consultas](./Consultas_SQL/Explicacion.md)**
+
+---
+
+### 3 [API REST](./Api_rest)
+
+**Puerto:** `5000`  
+**Descripción:** API principal que maneja la lógica de negocio del sistema.
+
+**Endpoints principales:**
+- `POST /api/login` - Autenticación de usuarios
+- `GET /api/productos` - Listar productos disponibles
+- `POST /api/orden` - Crear nueva orden de compra
+
+**[Ver documentación detallada](./Api_rest/INSTRUCCIONES.md)**
+
+---
+
+### 4 [Microservicio CSV](./Microservicio_CSV)
+
+**Puerto:** `5100`  
+**Descripción:** Microservicio especializado en la carga masiva de productos desde archivos CSV.
+
+**Endpoints principales:**
+- `POST /procesar-productos-csv` - Cargar productos desde CSV
+- `GET /productos` - Verificar productos cargados
+
+**[Ver documentación detallada](./Microservicio_CSV/INSTRUCCIONES.md)**
 
 ---
 
