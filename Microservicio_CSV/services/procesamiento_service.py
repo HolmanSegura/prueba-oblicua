@@ -5,12 +5,12 @@ from flask import request, jsonify
 from db.base_datos import conexion_bd
 
 
-def _respuesta_csv(success, insertados, fallidos, errores, status):
+def _respuesta_csv(exitoso, insertados, fallidos, errores, status):
     """
     Construye la respuesta estándar del microservicio CSV.
     """
     cuerpo = {
-        "success": success,
+        "exitoso": exitoso,
         "insertados": insertados,
         "fallidos": fallidos,
         "errores": errores,
@@ -23,10 +23,10 @@ def procesar_productos_csv():
     Procesa un archivo CSV con productos y los inserta en la base de datos.
     Valida cabeceras, tipos de datos y reglas de negocio.
     """
-    # 1. Validar que venga el archivo
+    # Valida que venga el archivo
     if "file" not in request.files:
         return _respuesta_csv(
-            success=False,
+            exitoso=False,
             insertados=0,
             fallidos=0,
             errores=["No se envió ningún archivo en el campo 'file'"],
@@ -37,7 +37,7 @@ def procesar_productos_csv():
 
     if file.filename == "":
         return _respuesta_csv(
-            success=False,
+            exitoso=False,
             insertados=0,
             fallidos=0,
             errores=["El nombre de archivo está vacío"],
@@ -45,7 +45,7 @@ def procesar_productos_csv():
         )
 
     try:
-        # 2. Leer CSV en memoria (UTF-8)
+        # Leer CSV en memoria (UTF-8)
         text_wrapper = io.TextIOWrapper(file.stream, encoding="utf-8")
         reader = csv.DictReader(text_wrapper)
 
@@ -53,7 +53,7 @@ def procesar_productos_csv():
         columnas_esperadas = {"nombre", "precio", "cantidad_disponible", "estado"}
         if set(reader.fieldnames or []) != columnas_esperadas:
             return _respuesta_csv(
-                success=False,
+                exitoso=False,
                 insertados=0,
                 fallidos=0,
                 errores=[
@@ -77,10 +77,10 @@ def procesar_productos_csv():
             VALUES (%s, %s, %s, %s)
         """
 
-        # 3. Recorrer filas del CSV
-        fila_num = 1  # incluye encabezado
+        # Recorrer filas del CSV
+        fila_num = 1
         for row in reader:
-            fila_num += 1  # primera fila de datos será 2
+            fila_num += 1
 
             nombre = (row.get("nombre") or "").strip()
             precio_str = (row.get("precio") or "").strip()
@@ -128,7 +128,7 @@ def procesar_productos_csv():
                 )
                 continue
 
-            # 4. Intentar insertar en BD
+            # Insertar en BD
             try:
                 cursor.execute(insert_sql, (nombre, precio, cantidad, estado))
                 insertados += 1
@@ -139,11 +139,9 @@ def procesar_productos_csv():
                 )
 
         conn.commit()
-        cursor.close()
-        conn.close()
-
+        
         return _respuesta_csv(
-            success=True,
+            exitoso=True,
             insertados=insertados,
             fallidos=fallidos,
             errores=errores,
@@ -152,9 +150,21 @@ def procesar_productos_csv():
 
     except Exception as e:
         return _respuesta_csv(
-            success=False,
+            exitoso=False,
             insertados=0,
             fallidos=0,
             errores=[f"Error general procesando el archivo: {str(e)}"],
             status=500,
         )
+
+    finally:
+        if cursor is not None:
+            try:
+                cursor.close()
+            except Exception:
+                pass
+        if conn is not None:
+            try:
+                conn.close()
+            except Exception:
+                pass
